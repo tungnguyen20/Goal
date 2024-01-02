@@ -8,24 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		A6F18A6C2B44743500CFE32C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A6B2B44743500CFE32C /* AppDelegate.swift */; };
-		A6F18A6E2B44743500CFE32C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A6D2B44743500CFE32C /* SceneDelegate.swift */; };
-		A6F18A702B44743500CFE32C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A6F2B44743500CFE32C /* ViewController.swift */; };
-		A6F18A732B44743500CFE32C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F18A712B44743500CFE32C /* Main.storyboard */; };
 		A6F18A762B44743500CFE32C /* Goal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A742B44743500CFE32C /* Goal.xcdatamodeld */; };
 		A6F18A782B44743600CFE32C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F18A772B44743600CFE32C /* Assets.xcassets */; };
 		A6F18A7B2B44743600CFE32C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6F18A792B44743600CFE32C /* LaunchScreen.storyboard */; };
+		A6F18A862B44750F00CFE32C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A852B44750F00CFE32C /* AppCoordinator.swift */; };
+		A6F18A892B44752100CFE32C /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A882B44752100CFE32C /* Coordinator.swift */; };
+		A6F18A8B2B44761300CFE32C /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A8A2B44761300CFE32C /* MatchesViewController.swift */; };
+		A6F18A8F2B447FF200CFE32C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A8E2B447FF200CFE32C /* Team.swift */; };
+		A6F18A912B44801B00CFE32C /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A902B44801B00CFE32C /* Match.swift */; };
+		A6F18A942B44806300CFE32C /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A932B44806300CFE32C /* TeamService.swift */; };
+		A6F18A962B4480D200CFE32C /* TeamEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A952B4480D200CFE32C /* TeamEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A6F18A682B44743500CFE32C /* Goal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F18A6B2B44743500CFE32C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A6F18A6D2B44743500CFE32C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A6F18A6F2B44743500CFE32C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A6F18A722B44743500CFE32C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A6F18A752B44743500CFE32C /* Goal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Goal.xcdatamodel; sourceTree = "<group>"; };
 		A6F18A772B44743600CFE32C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6F18A7A2B44743600CFE32C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6F18A7C2B44743600CFE32C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6F18A852B44750F00CFE32C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		A6F18A882B44752100CFE32C /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		A6F18A8A2B44761300CFE32C /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
+		A6F18A8E2B447FF200CFE32C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		A6F18A902B44801B00CFE32C /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		A6F18A932B44806300CFE32C /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
+		A6F18A952B4480D200CFE32C /* TeamEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +66,76 @@
 		A6F18A6A2B44743500CFE32C /* Goal */ = {
 			isa = PBXGroup;
 			children = (
-				A6F18A6B2B44743500CFE32C /* AppDelegate.swift */,
-				A6F18A6D2B44743500CFE32C /* SceneDelegate.swift */,
-				A6F18A6F2B44743500CFE32C /* ViewController.swift */,
-				A6F18A712B44743500CFE32C /* Main.storyboard */,
-				A6F18A772B44743600CFE32C /* Assets.xcassets */,
-				A6F18A792B44743600CFE32C /* LaunchScreen.storyboard */,
-				A6F18A7C2B44743600CFE32C /* Info.plist */,
-				A6F18A742B44743500CFE32C /* Goal.xcdatamodeld */,
+				A6F18A842B4474D400CFE32C /* Resources */,
+				A6F18A8C2B447FC900CFE32C /* Networking */,
+				A6F18A872B44751600CFE32C /* Base */,
+				A6F18A822B4474B200CFE32C /* App */,
+				A6F18A832B4474B700CFE32C /* Features */,
 			);
 			path = Goal;
+			sourceTree = "<group>";
+		};
+		A6F18A822B4474B200CFE32C /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A6F18A6B2B44743500CFE32C /* AppDelegate.swift */,
+				A6F18A852B44750F00CFE32C /* AppCoordinator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A6F18A832B4474B700CFE32C /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A6F18A8A2B44761300CFE32C /* MatchesViewController.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		A6F18A842B4474D400CFE32C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A6F18A7C2B44743600CFE32C /* Info.plist */,
+				A6F18A792B44743600CFE32C /* LaunchScreen.storyboard */,
+				A6F18A772B44743600CFE32C /* Assets.xcassets */,
+				A6F18A742B44743500CFE32C /* Goal.xcdatamodeld */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		A6F18A872B44751600CFE32C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				A6F18A882B44752100CFE32C /* Coordinator.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		A6F18A8C2B447FC900CFE32C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A6F18A922B44805400CFE32C /* Services */,
+				A6F18A8D2B447FEB00CFE32C /* Models */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A6F18A8D2B447FEB00CFE32C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A6F18A8E2B447FF200CFE32C /* Team.swift */,
+				A6F18A902B44801B00CFE32C /* Match.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A6F18A922B44805400CFE32C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A6F18A932B44806300CFE32C /* TeamService.swift */,
+				A6F18A952B4480D200CFE32C /* TeamEndpoint.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,7 +198,6 @@
 			files = (
 				A6F18A7B2B44743600CFE32C /* LaunchScreen.storyboard in Resources */,
 				A6F18A782B44743600CFE32C /* Assets.xcassets in Resources */,
-				A6F18A732B44743500CFE32C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,24 +208,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F18A8F2B447FF200CFE32C /* Team.swift in Sources */,
+				A6F18A892B44752100CFE32C /* Coordinator.swift in Sources */,
+				A6F18A862B44750F00CFE32C /* AppCoordinator.swift in Sources */,
+				A6F18A8B2B44761300CFE32C /* MatchesViewController.swift in Sources */,
+				A6F18A942B44806300CFE32C /* TeamService.swift in Sources */,
 				A6F18A762B44743500CFE32C /* Goal.xcdatamodeld in Sources */,
-				A6F18A702B44743500CFE32C /* ViewController.swift in Sources */,
+				A6F18A962B4480D200CFE32C /* TeamEndpoint.swift in Sources */,
 				A6F18A6C2B44743500CFE32C /* AppDelegate.swift in Sources */,
-				A6F18A6E2B44743500CFE32C /* SceneDelegate.swift in Sources */,
+				A6F18A912B44801B00CFE32C /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A6F18A712B44743500CFE32C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A6F18A722B44743500CFE32C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A6F18A792B44743600CFE32C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -301,15 +365,16 @@
 				INFOPLIST_FILE = Goal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tungnguyen.goal.Goal;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tungnguyen.goal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -329,15 +394,16 @@
 				INFOPLIST_FILE = Goal/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tungnguyen.goal.Goal;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tungnguyen.goal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
