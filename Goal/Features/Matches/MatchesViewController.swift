@@ -12,6 +12,43 @@ import AVKit
 
 class MatchesViewController: UIViewController {
     
+    lazy var widescreenLayout: UICollectionViewCompositionalLayout = {
+        return UICollectionViewCompositionalLayout { (sectionIndex: Int,
+                                                      layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+            item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+            let group = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(0.6),
+                    heightDimension: .estimated(Section(rawValue: sectionIndex) == .upcoming ? 200 : 240)
+                ),
+                subitem: item,
+                count: 1
+            )
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+            section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(40))
+            let header = NSCollectionLayoutBoundarySupplementaryItem(
+                            layoutSize: headerSize,
+                            elementKind: UICollectionView.elementKindSectionHeader,
+                            alignment: .top)
+            section.boundarySupplementaryItems = [header]
+            return section
+        }
+    }()
+    
+    lazy var compactWidthScreenLayout: UICollectionViewCompositionalLayout = {
+        var configuration = UICollectionLayoutListConfiguration(appearance: .grouped)
+        configuration.showsSeparators = false
+        configuration.headerMode = .supplementary
+        configuration.backgroundColor = .background1
+        
+        return UICollectionViewCompositionalLayout.list(
+            using: configuration
+        )
+    }()
+    
     lazy var collectionView: UICollectionView = {
         var configuration = UICollectionLayoutListConfiguration(appearance: .grouped)
         configuration.showsSeparators = false
@@ -21,6 +58,7 @@ class MatchesViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout.list(
             using: configuration
         )
+        
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: layout
@@ -68,6 +106,15 @@ class MatchesViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         addSubviews()
         bindViewModel()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        if UIDevice.current.orientation.isLandscape {
+            collectionView.setCollectionViewLayout(widescreenLayout, animated: true)
+        } else {
+            collectionView.setCollectionViewLayout(compactWidthScreenLayout, animated: true)
+        }
     }
     
     func addSubviews() {
