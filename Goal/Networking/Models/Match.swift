@@ -14,4 +14,24 @@ struct Match: Decodable {
     var away: String
     var winner: String?
     var highlights: String?
+    
+    init(entity: MatchEntity) {
+        date = entity.date ?? ""
+        description = entity.desc ?? ""
+        home = entity.home ?? ""
+        away = entity.away ?? ""
+        winner = entity.winner
+        highlights = entity.highlights
+    }
+}
+
+extension Match: Hashable {}
+
+struct MatchList: Decodable {
+    var previous: [Match]
+    var upcoming: [Match]
+}
+
+struct MatchListResponse: Decodable {
+    var matches: MatchList
 }

@@ -35,7 +35,8 @@ extension URLRequest {
         case .plain:
             ()
         }
-        self.init(url: url)
+        self.init(url: url.appendingPathComponent(endpoint.path))
+        
         httpMethod = endpoint.method.rawValue
         httpBody = body
         headers.forEach { setValue($0.value, forHTTPHeaderField: $0.key) }

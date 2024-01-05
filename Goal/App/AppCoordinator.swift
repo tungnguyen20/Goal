@@ -6,23 +6,21 @@
 //
 
 import UIKit
+import Combine
 
-class AppCoordinator {
+class AppCoordinator: Coordinator<Void> {
     
     var window: UIWindow
     
     init(window: UIWindow) {
         self.window = window
     }
-    
+
     func launch() {
-        window.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
-        window.makeKeyAndVisible()
-    }
-    
-    func openMatches() {
-        window.rootViewController = MatchesViewController()
-        window.makeKeyAndVisible()
+        let coordinator = MatchesCoordinator(window: window)
+        coordinate(to: coordinator)
+            .sink(receiveValue: { _ in })
+            .store(in: &subscriptions)
     }
     
 }
