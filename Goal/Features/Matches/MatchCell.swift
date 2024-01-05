@@ -150,7 +150,6 @@ class MatchCell: UICollectionViewCell {
             homeAvatarView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 24),
             NSLayoutConstraint(item: homeAvatarView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 0.5, constant: 0),
             homeLabel.centerXAnchor.constraint(equalTo: homeAvatarView.centerXAnchor),
-            homeLabel.topAnchor.constraint(equalTo: homeAvatarView.bottomAnchor, constant: 16),
             
             awayAvatarView.heightAnchor.constraint(equalToConstant: 80),
             awayAvatarView.widthAnchor.constraint(equalToConstant: 80),
@@ -158,6 +157,7 @@ class MatchCell: UICollectionViewCell {
             NSLayoutConstraint(item: awayAvatarView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.5, constant: 0),
             awayLabel.centerXAnchor.constraint(equalTo: awayAvatarView.centerXAnchor),
             awayLabel.topAnchor.constraint(equalTo: awayAvatarView.bottomAnchor, constant: 16),
+            awayLabel.centerYAnchor.constraint(equalTo: homeLabel.centerYAnchor),
             
             timeContainerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             timeContainerView.centerYAnchor.constraint(equalTo: homeAvatarView.centerYAnchor),
