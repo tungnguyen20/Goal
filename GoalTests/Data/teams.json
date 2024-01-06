@@ -1,0 +1,25 @@
+
+{
+    "teams": [
+        {
+            "id": "767ec50c-7fdb-4c3d-98f9-d6727ef8252b",
+            "name": "A",
+            "logo": ""
+        },
+        {
+            "id": "767ec50c-7fdb-4c3d-98f9-d6727ef8252b",
+            "name": "B",
+            "logo": ""
+        },
+        {
+            "id": "767ec50c-7fdb-4c3d-98f9-d6727ef8252b",
+            "name": "C",
+            "logo": ""
+        },
+        {
+            "id": "767ec50c-7fdb-4c3d-98f9-d6727ef8252b",
+            "name": "D",
+            "logo": ""
+        }
+    ]
+}

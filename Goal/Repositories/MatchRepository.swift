@@ -10,16 +10,16 @@ import Combine
 
 protocol MatchRepositoryProtocol {
     func getMatchList() -> AnyPublisher<MatchListObject, Never>
-    func getTeamMatches(team: Team) -> AnyPublisher<MatchListObject, Never>
+    func getTeamMatches(name: String) -> AnyPublisher<MatchListObject, Never>
 }
 
 class MatchRepository: MatchRepositoryProtocol {
-    let matchService: MatchService
-    let teamService: TeamService
-    let matchDatabase: MatchDatabase
-    let teamDatabase: TeamDatabase
+    let matchService: MatchServiceProtocol
+    let teamService: TeamServiceProtocol
+    let matchDatabase: MatchDatabaseProtocol
+    let teamDatabase: TeamDatabaseProtocol
     
-    init(matchService: MatchService, teamService: TeamService, matchDatabase: MatchDatabase, teamDatabase: TeamDatabase) {
+    init(matchService: MatchServiceProtocol, teamService: TeamServiceProtocol, matchDatabase: MatchDatabaseProtocol, teamDatabase: TeamDatabaseProtocol) {
         self.matchService = matchService
         self.teamService = teamService
         self.matchDatabase = matchDatabase
@@ -81,7 +81,7 @@ class MatchRepository: MatchRepositoryProtocol {
         .eraseToAnyPublisher()
     }
     
-    func getTeamMatches(team: Team) -> AnyPublisher<MatchListObject, Never> {
+    func getTeamMatches(name: String) -> AnyPublisher<MatchListObject, Never> {
         return Publishers.CombineLatest(
             getAllTeams().replaceError(with: []),
             getAllMatches().replaceError(with: [])
@@ -92,7 +92,7 @@ class MatchRepository: MatchRepositoryProtocol {
                     guard let date = $0.date.toDate(format: .yyyyMMddHHmmssZ) else {
                         return false
                     }
-                    return date >= Date() && ($0.away == team.name || $0.home == team.name)
+                    return date >= Date() && ($0.away == name || $0.home == name)
                 }
                 .compactMap {
                     self.getMatchItem(match: $0, teams: teams)
@@ -102,7 +102,7 @@ class MatchRepository: MatchRepositoryProtocol {
                     guard let date = $0.date.toDate(format: .yyyyMMddHHmmssZ) else {
                         return false
                     }
-                    return date < Date() && ($0.away == team.name || $0.home == team.name)
+                    return date < Date() && ($0.away == name || $0.home == name)
                 }
                 .compactMap {
                     self.getMatchItem(match: $0, teams: teams)

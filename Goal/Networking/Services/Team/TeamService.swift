@@ -9,7 +9,11 @@ import Foundation
 import Networking
 import Combine
 
-class TeamService: ApiClient {
+protocol TeamServiceProtocol {
+    func getAllTeams() -> AnyPublisher<TeamListResponse, ApiError>
+}
+
+class TeamService: ApiClient, TeamServiceProtocol {
     
     func getAllTeams() -> AnyPublisher<TeamListResponse, ApiError> {
         return request(TeamEndpoint.getTeams)

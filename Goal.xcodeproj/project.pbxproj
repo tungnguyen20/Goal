@@ -29,6 +29,12 @@
 		A6CFA2D72B486B7600B9E535 /* MatchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CFA2D52B486B7600B9E535 /* MatchEndpoint.swift */; };
 		A6CFA2D82B486B7600B9E535 /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CFA2D62B486B7600B9E535 /* MatchService.swift */; };
 		A6CFA2DA2B486F4500B9E535 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CFA2D92B486F4500B9E535 /* PersistenceController.swift */; };
+		A6CFA2DC2B48D79E00B9E535 /* MockMatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CFA2DB2B48D79E00B9E535 /* MockMatchService.swift */; };
+		A6CFA2DE2B48D8D000B9E535 /* MockTeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CFA2DD2B48D8D000B9E535 /* MockTeamService.swift */; };
+		A6CFA2E02B48D8D900B9E535 /* MockMatchDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CFA2DF2B48D8D900B9E535 /* MockMatchDatabase.swift */; };
+		A6CFA2E22B48D8E100B9E535 /* MockTeamDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CFA2E12B48D8E100B9E535 /* MockTeamDatabase.swift */; };
+		A6DD672E2B496BE100DA2FB1 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = A6DD672D2B496BE100DA2FB1 /* matches.json */; };
+		A6DD67302B496D3900DA2FB1 /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = A6DD672F2B496D3900DA2FB1 /* teams.json */; };
 		A6F18A6C2B44743500CFE32C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A6B2B44743500CFE32C /* AppDelegate.swift */; };
 		A6F18A762B44743500CFE32C /* Goal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A742B44743500CFE32C /* Goal.xcdatamodeld */; };
 		A6F18A782B44743600CFE32C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F18A772B44743600CFE32C /* Assets.xcassets */; };
@@ -83,6 +89,12 @@
 		A6CFA2D52B486B7600B9E535 /* MatchEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchEndpoint.swift; sourceTree = "<group>"; };
 		A6CFA2D62B486B7600B9E535 /* MatchService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
 		A6CFA2D92B486F4500B9E535 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		A6CFA2DB2B48D79E00B9E535 /* MockMatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchService.swift; sourceTree = "<group>"; };
+		A6CFA2DD2B48D8D000B9E535 /* MockTeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTeamService.swift; sourceTree = "<group>"; };
+		A6CFA2DF2B48D8D900B9E535 /* MockMatchDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchDatabase.swift; sourceTree = "<group>"; };
+		A6CFA2E12B48D8E100B9E535 /* MockTeamDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTeamDatabase.swift; sourceTree = "<group>"; };
+		A6DD672D2B496BE100DA2FB1 /* matches.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
+		A6DD672F2B496D3900DA2FB1 /* teams.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = teams.json; sourceTree = "<group>"; };
 		A6F18A682B44743500CFE32C /* Goal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F18A6B2B44743500CFE32C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6F18A752B44743500CFE32C /* Goal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Goal.xcdatamodel; sourceTree = "<group>"; };
@@ -193,6 +205,7 @@
 		A6CFA2B52B48591900B9E535 /* GoalTests */ = {
 			isa = PBXGroup;
 			children = (
+				A6DD672C2B496BC800DA2FB1 /* Data */,
 				A6CFA2BE2B48592300B9E535 /* ViewModels */,
 				A6CFA2BD2B48591E00B9E535 /* Repositories */,
 			);
@@ -203,6 +216,10 @@
 			isa = PBXGroup;
 			children = (
 				A6CFA2C22B485AD500B9E535 /* MatchRepositoryTests.swift */,
+				A6CFA2DB2B48D79E00B9E535 /* MockMatchService.swift */,
+				A6CFA2DD2B48D8D000B9E535 /* MockTeamService.swift */,
+				A6CFA2DF2B48D8D900B9E535 /* MockMatchDatabase.swift */,
+				A6CFA2E12B48D8E100B9E535 /* MockTeamDatabase.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -232,6 +249,15 @@
 				A6CFA2D62B486B7600B9E535 /* MatchService.swift */,
 			);
 			path = Match;
+			sourceTree = "<group>";
+		};
+		A6DD672C2B496BC800DA2FB1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A6DD672D2B496BE100DA2FB1 /* matches.json */,
+				A6DD672F2B496D3900DA2FB1 /* teams.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		A6F18A5F2B44743500CFE32C = {
@@ -472,6 +498,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6DD672E2B496BE100DA2FB1 /* matches.json in Resources */,
+				A6DD67302B496D3900DA2FB1 /* teams.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,7 +523,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6CFA2E22B48D8E100B9E535 /* MockTeamDatabase.swift in Sources */,
+				A6CFA2DE2B48D8D000B9E535 /* MockTeamService.swift in Sources */,
 				A6CFA2C32B485AD500B9E535 /* MatchRepositoryTests.swift in Sources */,
+				A6CFA2E02B48D8D900B9E535 /* MockMatchDatabase.swift in Sources */,
+				A6CFA2DC2B48D79E00B9E535 /* MockMatchService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

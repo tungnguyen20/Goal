@@ -20,7 +20,7 @@ class TeamDetailViewModel {
         self.team = team
         self.matchRepository = matchRepository
         
-        matchRepository.getTeamMatches(team: team)
+        matchRepository.getTeamMatches(name: team.name)
             .assign(to: &self.$matchListObject)
     }
 }

@@ -9,7 +9,11 @@ import Foundation
 import Networking
 import Combine
 
-class MatchService: ApiClient {
+protocol MatchServiceProtocol {
+    func getAllMatches() -> AnyPublisher<MatchListResponse, ApiError>
+}
+
+class MatchService: ApiClient, MatchServiceProtocol {
 
     func getAllMatches() -> AnyPublisher<MatchListResponse, ApiError> {
         return request(MatchEndpoint.getMatches)
