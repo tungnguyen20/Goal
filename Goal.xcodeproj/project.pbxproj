@@ -35,6 +35,7 @@
 		A6CFA2E22B48D8E100B9E535 /* MockTeamDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CFA2E12B48D8E100B9E535 /* MockTeamDatabase.swift */; };
 		A6DD672E2B496BE100DA2FB1 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = A6DD672D2B496BE100DA2FB1 /* matches.json */; };
 		A6DD67302B496D3900DA2FB1 /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = A6DD672F2B496D3900DA2FB1 /* teams.json */; };
+		A6DD67322B49A93600DA2FB1 /* TeamMatchesSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DD67312B49A93600DA2FB1 /* TeamMatchesSectionHeader.swift */; };
 		A6F18A6C2B44743500CFE32C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A6B2B44743500CFE32C /* AppDelegate.swift */; };
 		A6F18A762B44743500CFE32C /* Goal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A742B44743500CFE32C /* Goal.xcdatamodeld */; };
 		A6F18A782B44743600CFE32C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F18A772B44743600CFE32C /* Assets.xcassets */; };
@@ -95,6 +96,7 @@
 		A6CFA2E12B48D8E100B9E535 /* MockTeamDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTeamDatabase.swift; sourceTree = "<group>"; };
 		A6DD672D2B496BE100DA2FB1 /* matches.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
 		A6DD672F2B496D3900DA2FB1 /* teams.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = teams.json; sourceTree = "<group>"; };
+		A6DD67312B49A93600DA2FB1 /* TeamMatchesSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMatchesSectionHeader.swift; sourceTree = "<group>"; };
 		A6F18A682B44743500CFE32C /* Goal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Goal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F18A6B2B44743500CFE32C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6F18A752B44743500CFE32C /* Goal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Goal.xcdatamodel; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		A6CFA2942B472A1700B9E535 /* TeamDetail */ = {
 			isa = PBXGroup;
 			children = (
+				A6DD67312B49A93600DA2FB1 /* TeamMatchesSectionHeader.swift */,
 				A6CFA2952B472A2600B9E535 /* TeamDetailCoordinator.swift */,
 				A6CFA2972B472A6800B9E535 /* TeamDetailViewController.swift */,
 				A6CFA2992B472B0100B9E535 /* TeamDetailViewModel.swift */,
@@ -206,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				A6DD672C2B496BC800DA2FB1 /* Data */,
-				A6CFA2BE2B48592300B9E535 /* ViewModels */,
 				A6CFA2BD2B48591E00B9E535 /* Repositories */,
 			);
 			path = GoalTests;
@@ -222,13 +224,6 @@
 				A6CFA2E12B48D8E100B9E535 /* MockTeamDatabase.swift */,
 			);
 			path = Repositories;
-			sourceTree = "<group>";
-		};
-		A6CFA2BE2B48592300B9E535 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		A6CFA2C62B48625C00B9E535 /* Database */ = {
@@ -537,6 +532,7 @@
 			files = (
 				A6CFA2D32B48660200B9E535 /* TeamDatabase.swift in Sources */,
 				A6F18A8F2B447FF200CFE32C /* Team.swift in Sources */,
+				A6DD67322B49A93600DA2FB1 /* TeamMatchesSectionHeader.swift in Sources */,
 				A6CFA28F2B471D9A00B9E535 /* Colors.swift in Sources */,
 				A6F18AB12B462A6E00CFE32C /* UIImageViewExtensions.swift in Sources */,
 				A6CFA29A2B472B0100B9E535 /* TeamDetailViewModel.swift in Sources */,

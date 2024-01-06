@@ -110,6 +110,7 @@ class MatchCell: UICollectionViewCell {
     var highlightBottomToBottom: NSLayoutConstraint?
     
     var subscriptions = Set<AnyCancellable>()
+    var cancellables: [AnyCancellable] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -205,7 +206,11 @@ class MatchCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        homeAvatarView.image = nil
+        awayAvatarView.image = nil
         subscriptions.removeAll()
+        cancellables.forEach { $0.cancel() }
+        cancellables.removeAll()
     }
     
     func configure(item: MatchItem, isPrevious: Bool) {
@@ -214,9 +219,26 @@ class MatchCell: UICollectionViewCell {
         timeLabel.text = item.match.date.toDate(format: .yyyyMMddHHmmssZ)?.toString(format: .hhmm)
         homeLabel.text = item.home.name
         awayLabel.text = item.away.name
-        homeAvatarView.load(link: item.home.logo)
-        awayAvatarView.load(link: item.away.logo)
-        containerView.layer.opacity = isPrevious ? 0.6 : 1
+        if let cancellable = homeAvatarView.load(link: item.home.logo) {
+            cancellables.append(cancellable)
+        }
+        if let cancellable = awayAvatarView.load(link: item.away.logo) {
+            cancellables.append(cancellable)
+        }
+        if isPrevious {
+            let homeOpacity: Float = item.match.winner == item.home.name ? 0.8 : 0.3
+            let awayOpacity: Float = item.match.winner == item.away.name ? 0.8 : 0.3
+            homeAvatarView.layer.opacity = homeOpacity
+            homeLabel.layer.opacity = homeOpacity
+            awayAvatarView.layer.opacity = awayOpacity
+            awayLabel.layer.opacity = awayOpacity
+        } else {
+            homeAvatarView.layer.opacity = 1
+            homeLabel.layer.opacity = 1
+            awayAvatarView.layer.opacity = 1
+            awayLabel.layer.opacity = 1
+        }
+        timeContainerView.layer.opacity = isPrevious ? 0.6 : 1
         highlightView.isHidden = !hasHighlights
         teamsLabelBottomToBottom?.isActive = !hasHighlights
         teamsLabelBottomToHighlight?.isActive = hasHighlights

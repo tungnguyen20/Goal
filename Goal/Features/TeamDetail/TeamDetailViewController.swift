@@ -12,9 +12,13 @@ import AVKit
 
 class TeamDetailViewController: UIViewController {
     
+    var cancellable: AnyCancellable?
+    
     lazy var collectionView: UICollectionView = {
-        var configuration = UICollectionLayoutListConfiguration(appearance: .plain)
+        var configuration = UICollectionLayoutListConfiguration(appearance: .grouped)
         configuration.showsSeparators = false
+        configuration.headerMode = .supplementary
+        configuration.backgroundColor = .background1
         let layout = UICollectionViewCompositionalLayout.list(
             using: configuration
         )
@@ -74,6 +78,11 @@ class TeamDetailViewController: UIViewController {
         bindViewModel()
     }
     
+    deinit {
+        cancellable?.cancel()
+        cancellable = nil
+    }
+    
     func addSubviews() {
         view.backgroundColor = .background1
         view.addSubviews([
@@ -93,19 +102,20 @@ class TeamDetailViewController: UIViewController {
             logoView.widthAnchor.constraint(equalToConstant: 120),
             logoView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
             logoView.centerXAnchor.constraint(equalTo: nameLabel.centerXAnchor),
-            collectionView.topAnchor.constraint(equalTo: logoView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: logoView.bottomAnchor, constant: 16),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
         
         collectionView.register(TeamMatchCell.self, forCellWithReuseIdentifier: matchCellReuseIdentifier)
+        collectionView.register(TeamMatchesSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         backButton.addTarget(self, action: #selector(onTapBack), for: .touchUpInside)
     }
     
     func bindViewModel() {
         nameLabel.text = viewModel.team.name
-        logoView.load(link: viewModel.team.logo)
+        cancellable = logoView.load(link: viewModel.team.logo)
         
         viewModel.$matchListObject
             .sink { [weak self] matches in
@@ -128,7 +138,7 @@ class TeamDetailViewController: UIViewController {
 extension TeamDetailViewController {
     
     func createDataSource() -> UICollectionViewDiffableDataSource<Section, MatchItem> {
-        return UICollectionViewDiffableDataSource(collectionView: collectionView) { collectionView, indexPath, item in
+        let dataSource = UICollectionViewDiffableDataSource<Section, MatchItem>(collectionView: collectionView) { collectionView, indexPath, item in
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: self.matchCellReuseIdentifier,
                 for: indexPath
@@ -154,6 +164,16 @@ extension TeamDetailViewController {
                 .store(in: &cell.subscriptions)
             return cell
         }
+        
+        dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as? TeamMatchesSectionHeader else {
+                fatalError("Could not dequeue section header")
+            }
+            header.configure(title: Section(rawValue: indexPath.section)?.title)
+            return header
+        }
+        
+        return dataSource
     }
     
 }
@@ -179,6 +199,15 @@ extension TeamDetailViewController {
     enum Section: Int, CaseIterable {
         case upcoming
         case previous
+        
+        var title: String {
+            switch self {
+            case .upcoming:
+                return "Upcoming matches"
+            case .previous:
+                return "Previous matches"
+            }
+        }
     }
     
 }

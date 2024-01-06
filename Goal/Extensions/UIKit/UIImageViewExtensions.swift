@@ -6,25 +6,30 @@
 //
 
 import UIKit
+import Combine
 
 extension UIImageView {
-    func load(url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-            else { return }
-            DispatchQueue.main.async() { () -> Void in
-                self.image = image
-            }
-        }.resume()
+    func load(url: URL) -> AnyCancellable? {
+        return URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+            .compactMap { UIImage(data: $0) }
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }, receiveValue: { [weak self] image in
+                self?.image = image
+            })
     }
     
-    func load(link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
-        guard let url = URL(string: link) else { return }
-        load(url: url, contentMode: mode)
+    func load(link: String) -> AnyCancellable? {
+        guard let url = URL(string: link) else {
+            return nil
+        }
+        return load(url: url)
     }
 }
