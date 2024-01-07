@@ -19,6 +19,6 @@ Goal app allow users to view the list of upcoming matches and previous matches.
 
 ## Screenshots
 
-![Portrait](https://i.ibb.co/hRrTPPF/portrait.gif)
+![Portrait](./Screenshots/portrait.gif)
 
-![Landscape](https://i.ibb.co/WHr5YW6/landscape.gif)
+![Landscape](./Screenshots/landscape.gif)
