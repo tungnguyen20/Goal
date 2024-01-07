@@ -24,8 +24,7 @@ class MatchesCoordinator: Coordinator<Void> {
     override func start() -> AnyPublisher<Void, Never> {
         let viewModel = MatchesViewModel(
             matchRepository: MatchRepository(
-                matchService: MatchService(),
-                teamService: TeamService(),
+                service: ApiService(),
                 matchDatabase: MatchDatabase(persistentContainer: PersistenceController.shared.container),
                 teamDatabase: TeamDatabase(persistentContainer: PersistenceController.shared.container)
             )

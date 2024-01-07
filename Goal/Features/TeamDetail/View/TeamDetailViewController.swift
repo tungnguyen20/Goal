@@ -76,6 +76,7 @@ class TeamDetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         addSubviews()
         bindViewModel()
+        viewModel.getTeamMatches()
     }
     
     deinit {
@@ -117,14 +118,12 @@ class TeamDetailViewController: UIViewController {
         nameLabel.text = viewModel.team.name
         cancellable = logoView.load(link: viewModel.team.logo)
         
-        viewModel.$matchListObject
-            .sink { [weak self] matches in
-                var snapshot = NSDiffableDataSourceSnapshot<Section, MatchItem>()
+        Publishers.CombineLatest(viewModel.$upcomingMatches, viewModel.$previousMatches)
+            .sink { [weak self] upcoming, previous in
+                var snapshot = NSDiffableDataSourceSnapshot<Section, MatchItemViewModel>()
                 snapshot.appendSections(Section.allCases)
-                
-                snapshot.appendItems(matches.previous, toSection: .previous)
-                snapshot.appendItems(matches.upcoming, toSection: .upcoming)
-                
+                snapshot.appendItems(upcoming, toSection: .upcoming)
+                snapshot.appendItems(previous, toSection: .previous)
                 self?.dataSource.apply(snapshot, animatingDifferences: true)
             }
             .store(in: &subscriptions)
@@ -137,26 +136,26 @@ class TeamDetailViewController: UIViewController {
 
 extension TeamDetailViewController {
     
-    func createDataSource() -> UICollectionViewDiffableDataSource<Section, MatchItem> {
-        let dataSource = UICollectionViewDiffableDataSource<Section, MatchItem>(collectionView: collectionView) { collectionView, indexPath, item in
+    func createDataSource() -> UICollectionViewDiffableDataSource<Section, MatchItemViewModel> {
+        let dataSource = UICollectionViewDiffableDataSource<Section, MatchItemViewModel>(collectionView: collectionView) { collectionView, indexPath, item in
             let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: self.matchCellReuseIdentifier,
                 for: indexPath
             ) as! TeamMatchCell
-            cell.configure(item: item, isPrevious: indexPath.section == Section.previous.rawValue)
+            cell.configure(viewModel: item)
             cell.selectHomeTeam
                 .sink(receiveValue: { [weak self] _ in
-                    self?.viewModel.route.send(.openTeam(team: item.home))
+                    self?.viewModel.route.send(.openTeam(team: item.matchItem.home))
                 })
                 .store(in: &cell.subscriptions)
             cell.selectAwayTeam
                 .sink(receiveValue: { [weak self] _ in
-                    self?.viewModel.route.send(.openTeam(team: item.away))
+                    self?.viewModel.route.send(.openTeam(team: item.matchItem.away))
                 })
                 .store(in: &cell.subscriptions)
             cell.selectHighlight
                 .sink(receiveValue: { [weak self] _ in
-                    guard let highlights = item.match.highlights, let url = URL(string: highlights) else {
+                    guard let highlights = item.highlights, let url = URL(string: highlights) else {
                         return
                     }
                     self?.playVideo(url: url)

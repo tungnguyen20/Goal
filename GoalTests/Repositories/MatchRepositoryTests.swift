@@ -14,19 +14,17 @@ final class MatchRepositoryTests: XCTestCase {
     private var cancellables: Set<AnyCancellable>!
     
     var sut: MatchRepository!
-    var matchService: MockMatchService!
-    var teamService: MockTeamService!
+    var service: MockApiService!
     var matchDatabase: MockMatchDatabase!
     var teamDatabase: MockTeamDatabase!
     
     override func setUpWithError() throws {
         cancellables = .init()
-        matchService = MockMatchService()
-        teamService = MockTeamService()
+        service = MockApiService()
         matchDatabase = MockMatchDatabase()
         teamDatabase = MockTeamDatabase()
         
-        sut = MatchRepository(matchService: matchService, teamService: teamService, matchDatabase: matchDatabase, teamDatabase: teamDatabase)
+        sut = MatchRepository(service: service, matchDatabase: matchDatabase, teamDatabase: teamDatabase)
     }
     
     func getMockMatches() -> MatchListResponse {
@@ -45,8 +43,8 @@ final class MatchRepositoryTests: XCTestCase {
         var error: Error?
         
         let expectation0 = self.expectation(description: "getAllMatches_when_service_failed_and_database_empty")
-        matchService.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
-        teamService.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
         matchDatabase.matches = Result.success([]).publisher.eraseToAnyPublisher()
         teamDatabase.teams = Result.success([]).publisher.eraseToAnyPublisher()
         
@@ -74,8 +72,8 @@ final class MatchRepositoryTests: XCTestCase {
         error = nil
         
         let expectation1 = self.expectation(description: "getAllMatches_when_service_success")
-        matchService.matches = Result.success(getMockMatches()).publisher.eraseToAnyPublisher()
-        teamService.teams = Result.success(getMockTeams()).publisher.eraseToAnyPublisher()
+        service.matches = Result.success(getMockMatches()).publisher.eraseToAnyPublisher()
+        service.teams = Result.success(getMockTeams()).publisher.eraseToAnyPublisher()
         
         sut.getMatchList()
             .sink(receiveCompletion: { completion in
@@ -100,8 +98,8 @@ final class MatchRepositoryTests: XCTestCase {
         matchList = nil
         error = nil
         
-        matchService.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
-        teamService.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
         
         let expectation2 = self.expectation(description: "getAllMatches_when_service_failed_and_database_has_data")
         
@@ -131,8 +129,8 @@ final class MatchRepositoryTests: XCTestCase {
         var error: Error?
         
         let expectation0 = self.expectation(description: "getTeamMatches_when_service_failed")
-        matchService.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
-        teamService.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
         matchDatabase.matches = Result.success([]).publisher.eraseToAnyPublisher()
         teamDatabase.teams = Result.success([]).publisher.eraseToAnyPublisher()
         
@@ -158,8 +156,8 @@ final class MatchRepositoryTests: XCTestCase {
         
         let expectation1 = self.expectation(description: "getTeamMatches_when_service_success")
         
-        matchService.matches = Result.success(getMockMatches()).publisher.eraseToAnyPublisher()
-        teamService.teams = Result.success(getMockTeams()).publisher.eraseToAnyPublisher()
+        service.matches = Result.success(getMockMatches()).publisher.eraseToAnyPublisher()
+        service.teams = Result.success(getMockTeams()).publisher.eraseToAnyPublisher()
         
         sut.getTeamMatches(name: "A")
             .sink(receiveCompletion: { completion in
@@ -184,8 +182,8 @@ final class MatchRepositoryTests: XCTestCase {
         matchList = nil
         error = nil
         
-        matchService.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
-        teamService.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
         
         let expectation2 = self.expectation(description: "getTeamMatches_when_service_failed_and_database_has_data")
         

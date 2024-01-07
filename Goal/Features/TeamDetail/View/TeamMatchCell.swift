@@ -2,10 +2,9 @@
 //  TeamMatchCell.swift
 //  Goal
 //
-//  Created by Tung Nguyen on 05/01/2024.
+//  Created by Tung Nguyen on 03/01/2024.
 //
 
-import Foundation
 import UIKit
 import Combine
 
@@ -152,7 +151,6 @@ class TeamMatchCell: UICollectionViewCell {
             homeAvatarView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 24),
             NSLayoutConstraint(item: homeAvatarView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 0.5, constant: 0),
             homeLabel.centerXAnchor.constraint(equalTo: homeAvatarView.centerXAnchor),
-            homeLabel.topAnchor.constraint(equalTo: homeAvatarView.bottomAnchor, constant: 16),
             
             awayAvatarView.heightAnchor.constraint(equalToConstant: 80),
             awayAvatarView.widthAnchor.constraint(equalToConstant: 80),
@@ -160,6 +158,7 @@ class TeamMatchCell: UICollectionViewCell {
             NSLayoutConstraint(item: awayAvatarView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.5, constant: 0),
             awayLabel.centerXAnchor.constraint(equalTo: awayAvatarView.centerXAnchor),
             awayLabel.topAnchor.constraint(equalTo: awayAvatarView.bottomAnchor, constant: 16),
+            awayLabel.centerYAnchor.constraint(equalTo: homeLabel.centerYAnchor),
             
             timeContainerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             timeContainerView.centerYAnchor.constraint(equalTo: homeAvatarView.centerYAnchor),
@@ -214,21 +213,21 @@ class TeamMatchCell: UICollectionViewCell {
         cancellables.removeAll()
     }
     
-    func configure(item: MatchItem, isPrevious: Bool) {
-        let hasHighlights = item.match.highlights?.isEmpty == false
-        dateLabel.text = item.match.date.toDate(format: .yyyyMMddHHmmssZ)?.toString(format: .ddMM)
-        timeLabel.text = item.match.date.toDate(format: .yyyyMMddHHmmssZ)?.toString(format: .hhmm)
-        homeLabel.text = item.home.name
-        awayLabel.text = item.away.name
-        if let cancellable = homeAvatarView.load(link: item.home.logo) {
+    func configure(viewModel: MatchItemViewModel) {
+        let hasHighlights = viewModel.highlights != nil
+        dateLabel.text = viewModel.date
+        timeLabel.text = viewModel.time
+        homeLabel.text = viewModel.homeName
+        awayLabel.text = viewModel.awayName
+        if let cancellable = homeAvatarView.load(link: viewModel.homeLogo) {
             cancellables.append(cancellable)
         }
-        if let cancellable = awayAvatarView.load(link: item.away.logo) {
+        if let cancellable = awayAvatarView.load(link: viewModel.awayLogo) {
             cancellables.append(cancellable)
         }
-        if isPrevious {
-            let homeOpacity: Float = item.match.winner == item.home.name ? 0.8 : 0.3
-            let awayOpacity: Float = item.match.winner == item.away.name ? 0.8 : 0.3
+        if viewModel.isPrevious {
+            let homeOpacity: Float = viewModel.isHomeWinner ? 0.8 : 0.3
+            let awayOpacity: Float = viewModel.isAwayWinner ? 0.8 : 0.3
             homeAvatarView.layer.opacity = homeOpacity
             homeLabel.layer.opacity = homeOpacity
             awayAvatarView.layer.opacity = awayOpacity
@@ -239,7 +238,7 @@ class TeamMatchCell: UICollectionViewCell {
             awayAvatarView.layer.opacity = 1
             awayLabel.layer.opacity = 1
         }
-        timeContainerView.layer.opacity = isPrevious ? 0.6 : 1
+        timeContainerView.layer.opacity = viewModel.isPrevious ? 0.6 : 1
         highlightView.isHidden = !hasHighlights
         teamsLabelBottomToBottom?.isActive = !hasHighlights
         teamsLabelBottomToHighlight?.isActive = hasHighlights

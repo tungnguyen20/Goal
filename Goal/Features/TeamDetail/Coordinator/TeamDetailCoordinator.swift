@@ -28,8 +28,7 @@ class TeamDetailCoordinator: Coordinator<Void> {
         let viewModel = TeamDetailViewModel(
             team: team,
             matchRepository: MatchRepository(
-                matchService: MatchService(),
-                teamService: TeamService(),
+                service: ApiService(),
                 matchDatabase: MatchDatabase(persistentContainer: PersistenceController.shared.container),
                 teamDatabase: TeamDatabase(persistentContainer: PersistenceController.shared.container)
             )

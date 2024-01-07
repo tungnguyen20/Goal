@@ -213,21 +213,21 @@ class MatchCell: UICollectionViewCell {
         cancellables.removeAll()
     }
     
-    func configure(item: MatchItem, isPrevious: Bool) {
-        let hasHighlights = item.match.highlights?.isEmpty == false
-        dateLabel.text = item.match.date.toDate(format: .yyyyMMddHHmmssZ)?.toString(format: .ddMM)
-        timeLabel.text = item.match.date.toDate(format: .yyyyMMddHHmmssZ)?.toString(format: .hhmm)
-        homeLabel.text = item.home.name
-        awayLabel.text = item.away.name
-        if let cancellable = homeAvatarView.load(link: item.home.logo) {
+    func configure(viewModel: MatchItemViewModel) {
+        let hasHighlights = viewModel.highlights != nil
+        dateLabel.text = viewModel.date
+        timeLabel.text = viewModel.time
+        homeLabel.text = viewModel.homeName
+        awayLabel.text = viewModel.awayName
+        if let cancellable = homeAvatarView.load(link: viewModel.homeLogo) {
             cancellables.append(cancellable)
         }
-        if let cancellable = awayAvatarView.load(link: item.away.logo) {
+        if let cancellable = awayAvatarView.load(link: viewModel.awayLogo) {
             cancellables.append(cancellable)
         }
-        if isPrevious {
-            let homeOpacity: Float = item.match.winner == item.home.name ? 0.8 : 0.3
-            let awayOpacity: Float = item.match.winner == item.away.name ? 0.8 : 0.3
+        if viewModel.isPrevious {
+            let homeOpacity: Float = viewModel.isHomeWinner ? 0.8 : 0.3
+            let awayOpacity: Float = viewModel.isAwayWinner ? 0.8 : 0.3
             homeAvatarView.layer.opacity = homeOpacity
             homeLabel.layer.opacity = homeOpacity
             awayAvatarView.layer.opacity = awayOpacity
@@ -238,7 +238,7 @@ class MatchCell: UICollectionViewCell {
             awayAvatarView.layer.opacity = 1
             awayLabel.layer.opacity = 1
         }
-        timeContainerView.layer.opacity = isPrevious ? 0.6 : 1
+        timeContainerView.layer.opacity = viewModel.isPrevious ? 0.6 : 1
         highlightView.isHidden = !hasHighlights
         teamsLabelBottomToBottom?.isActive = !hasHighlights
         teamsLabelBottomToHighlight?.isActive = hasHighlights

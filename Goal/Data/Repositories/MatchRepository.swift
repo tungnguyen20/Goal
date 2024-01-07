@@ -14,20 +14,18 @@ protocol MatchRepositoryProtocol {
 }
 
 class MatchRepository: MatchRepositoryProtocol {
-    let matchService: MatchServiceProtocol
-    let teamService: TeamServiceProtocol
+    let service: ApiServiceProtocol
     let matchDatabase: MatchDatabaseProtocol
     let teamDatabase: TeamDatabaseProtocol
     
-    init(matchService: MatchServiceProtocol, teamService: TeamServiceProtocol, matchDatabase: MatchDatabaseProtocol, teamDatabase: TeamDatabaseProtocol) {
-        self.matchService = matchService
-        self.teamService = teamService
+    init(service: ApiServiceProtocol, matchDatabase: MatchDatabaseProtocol, teamDatabase: TeamDatabaseProtocol) {
+        self.service = service
         self.matchDatabase = matchDatabase
         self.teamDatabase = teamDatabase
     }
     
     func getAllMatches() -> AnyPublisher<[Match], Error> {
-        matchService.getAllMatches()
+        service.getAllMatches()
             .map { $0.matches.previous + $0.matches.upcoming }
             .map { [weak self] matches in
                 self?.matchDatabase.save(matches: matches)
@@ -39,7 +37,7 @@ class MatchRepository: MatchRepositoryProtocol {
     }
     
     func getAllTeams() -> AnyPublisher<[Team], Error> {
-        teamService.getAllTeams()
+        service.getAllTeams()
             .map(\.teams)
             .map { [weak self] teams in
                 self?.teamDatabase.save(teams: teams)
