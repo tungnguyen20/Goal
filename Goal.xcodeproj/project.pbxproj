@@ -38,10 +38,8 @@
 		A6FDA2902B4A7A62006292EC /* MatchItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA28F2B4A7A62006292EC /* MatchItemViewModel.swift */; };
 		A6FDA2982B4A7E75006292EC /* TeamMatchItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2972B4A7E75006292EC /* TeamMatchItemViewModel.swift */; };
 		A6FDA2A62B4A847E006292EC /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = A6FDA2A52B4A847E006292EC /* Networking */; };
-		A6FDA2BA2B4A8527006292EC /* TeamEntity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2A82B4A8527006292EC /* TeamEntity.xcdatamodeld */; };
 		A6FDA2BB2B4A8527006292EC /* MatchDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2AA2B4A8527006292EC /* MatchDatabase.swift */; };
 		A6FDA2BC2B4A8527006292EC /* TeamDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2AB2B4A8527006292EC /* TeamDatabase.swift */; };
-		A6FDA2BD2B4A8527006292EC /* MatchEntity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2AC2B4A8527006292EC /* MatchEntity.xcdatamodeld */; };
 		A6FDA2BE2B4A8527006292EC /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2AE2B4A8527006292EC /* Model.xcdatamodeld */; };
 		A6FDA2BF2B4A8527006292EC /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2B02B4A8527006292EC /* PersistenceController.swift */; };
 		A6FDA2C02B4A8527006292EC /* MatchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2B22B4A8527006292EC /* MatchRepository.swift */; };
@@ -103,10 +101,8 @@
 		A6F18AA72B4580B100CFE32C /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		A6FDA28F2B4A7A62006292EC /* MatchItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchItemViewModel.swift; sourceTree = "<group>"; };
 		A6FDA2972B4A7E75006292EC /* TeamMatchItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMatchItemViewModel.swift; sourceTree = "<group>"; };
-		A6FDA2A92B4A8527006292EC /* TeamEntity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TeamEntity.xcdatamodel; sourceTree = "<group>"; };
 		A6FDA2AA2B4A8527006292EC /* MatchDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchDatabase.swift; sourceTree = "<group>"; };
 		A6FDA2AB2B4A8527006292EC /* TeamDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamDatabase.swift; sourceTree = "<group>"; };
-		A6FDA2AD2B4A8527006292EC /* MatchEntity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MatchEntity.xcdatamodel; sourceTree = "<group>"; };
 		A6FDA2AF2B4A8527006292EC /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		A6FDA2B02B4A8527006292EC /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		A6FDA2B22B4A8527006292EC /* MatchRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchRepository.swift; sourceTree = "<group>"; };
@@ -359,10 +355,8 @@
 		A6FDA2A72B4A8527006292EC /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				A6FDA2A82B4A8527006292EC /* TeamEntity.xcdatamodeld */,
 				A6FDA2AA2B4A8527006292EC /* MatchDatabase.swift */,
 				A6FDA2AB2B4A8527006292EC /* TeamDatabase.swift */,
-				A6FDA2AC2B4A8527006292EC /* MatchEntity.xcdatamodeld */,
 				A6FDA2AE2B4A8527006292EC /* Model.xcdatamodeld */,
 				A6FDA2B02B4A8527006292EC /* PersistenceController.swift */,
 			);
@@ -562,7 +556,6 @@
 				A6FDA2C42B4A8527006292EC /* Team.swift in Sources */,
 				A6FDA2CD2B4A853F006292EC /* DateExtensions.swift in Sources */,
 				A6CFA28F2B471D9A00B9E535 /* Colors.swift in Sources */,
-				A6FDA2BA2B4A8527006292EC /* TeamEntity.xcdatamodeld in Sources */,
 				A6CFA29A2B472B0100B9E535 /* TeamDetailViewModel.swift in Sources */,
 				A6CFA28D2B471CDF00B9E535 /* Fonts.swift in Sources */,
 				A6CFA2C52B485DBE00B9E535 /* TeamMatchCell.swift in Sources */,
@@ -577,7 +570,6 @@
 				A6FDA2C02B4A8527006292EC /* MatchRepository.swift in Sources */,
 				A6FDA2BF2B4A8527006292EC /* PersistenceController.swift in Sources */,
 				A6FDA2C22B4A8527006292EC /* ApiEndpoint.swift in Sources */,
-				A6FDA2BD2B4A8527006292EC /* MatchEntity.xcdatamodeld in Sources */,
 				A6FDA2BC2B4A8527006292EC /* TeamDatabase.swift in Sources */,
 				A6CFA2932B4727EB00B9E535 /* MatchesCoordinator.swift in Sources */,
 				A6FDA2C12B4A8527006292EC /* ApiService.swift in Sources */,
@@ -881,26 +873,6 @@
 			);
 			currentVersion = A6F18A752B44743500CFE32C /* Goal.xcdatamodel */;
 			path = Goal.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		A6FDA2A82B4A8527006292EC /* TeamEntity.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A6FDA2A92B4A8527006292EC /* TeamEntity.xcdatamodel */,
-			);
-			currentVersion = A6FDA2A92B4A8527006292EC /* TeamEntity.xcdatamodel */;
-			path = TeamEntity.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		A6FDA2AC2B4A8527006292EC /* MatchEntity.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A6FDA2AD2B4A8527006292EC /* MatchEntity.xcdatamodel */,
-			);
-			currentVersion = A6FDA2AD2B4A8527006292EC /* MatchEntity.xcdatamodel */;
-			path = MatchEntity.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
