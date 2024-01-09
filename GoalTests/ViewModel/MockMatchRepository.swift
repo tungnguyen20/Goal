@@ -10,9 +10,10 @@ import Combine
 @testable import Goal
 
 class MockMatchRepository: MatchRepositoryProtocol {
-    
+
+    var teams: AnyPublisher<[Goal.Team], Never>!
     var matches: AnyPublisher<Goal.MatchListObject, Never>!
-    
+
     func getMatchList() -> AnyPublisher<Goal.MatchListObject, Never> {
         return matches
     }
@@ -21,5 +22,12 @@ class MockMatchRepository: MatchRepositoryProtocol {
         return matches
     }
     
+    func getAllTeams() -> AnyPublisher<[Goal.Team], Never> {
+        return teams
+    }
+    
+    func getMatches(teams: [String]) -> AnyPublisher<Goal.MatchListObject, Never> {
+        return matches
+    }
     
 }

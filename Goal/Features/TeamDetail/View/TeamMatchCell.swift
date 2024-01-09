@@ -144,6 +144,8 @@ class TeamMatchCell: UICollectionViewCell {
         teamsLabelBottomToBottom = awayLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -24)
         teamsLabelBottomToHighlight = awayLabel.bottomAnchor.constraint(equalTo: highlightView.topAnchor, constant: -16)
         highlightBottomToBottom = highlightView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -24)
+        let awayLabelTop = awayLabel.topAnchor.constraint(equalTo: awayAvatarView.bottomAnchor, constant: 16)
+        awayLabelTop.priority = .defaultHigh
         
         NSLayoutConstraint.activate([
             homeAvatarView.heightAnchor.constraint(equalToConstant: 80),
@@ -157,7 +159,7 @@ class TeamMatchCell: UICollectionViewCell {
             awayAvatarView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 24),
             NSLayoutConstraint(item: awayAvatarView, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1.5, constant: 0),
             awayLabel.centerXAnchor.constraint(equalTo: awayAvatarView.centerXAnchor),
-            awayLabel.topAnchor.constraint(equalTo: awayAvatarView.bottomAnchor, constant: 16),
+            awayLabelTop,
             awayLabel.centerYAnchor.constraint(equalTo: homeLabel.centerYAnchor),
             
             timeContainerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
@@ -206,6 +208,9 @@ class TeamMatchCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        teamsLabelBottomToBottom?.isActive = false
+        teamsLabelBottomToHighlight?.isActive = false
+        highlightBottomToBottom?.isActive = false
         homeAvatarView.image = nil
         awayAvatarView.image = nil
         subscriptions.removeAll()

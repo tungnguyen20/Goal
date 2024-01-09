@@ -33,7 +33,7 @@ final class MatchesViewModelTests: XCTestCase {
     
     func testMapDataFromRepositoryWhenEmpty() {
         repository.matches = Result.success(.init(upcoming: [], previous: [])).publisher.eraseToAnyPublisher()
-        sut.getMatches()
+        sut.getAllMatches()
         
         _ = sut.$previousMatches
             .sink { matches in
@@ -52,8 +52,7 @@ final class MatchesViewModelTests: XCTestCase {
                                   away: getMockTeams().teams[1])
         let matches = MatchListObject(upcoming: [matchItem], previous: [matchItem, matchItem])
         repository.matches = Result.success(matches).publisher.eraseToAnyPublisher()
-        sut.getMatches()
-        
+        sut.getAllMatches()
         
         _ = sut.$upcomingMatches
             .sink { matches in
@@ -66,6 +65,74 @@ final class MatchesViewModelTests: XCTestCase {
             }
     }
     
+    func testFilterTeamsWhenHasSelectingTeams() {
+        let matches = MatchListObject(
+            upcoming: [
+                MatchItem(match: getMockMatches().matches.upcoming[0],
+                          home: getMockTeams().teams[0],
+                          away: getMockTeams().teams[1]),
+                MatchItem(match: getMockMatches().matches.upcoming[1],
+                          home: getMockTeams().teams[1],
+                          away: getMockTeams().teams[2])
+            ],
+            previous: [
+                MatchItem(match: getMockMatches().matches.previous[0],
+                          home: getMockTeams().teams[0],
+                          away: getMockTeams().teams[1]),
+                MatchItem(match: getMockMatches().matches.previous[1],
+                          home: getMockTeams().teams[1],
+                          away: getMockTeams().teams[2])
+            ]
+        )
+        repository.matches = Result.success(matches).publisher.eraseToAnyPublisher()
+        sut.onFilterTeamsChanged(teams: [getMockTeams().teams[0]])
+        
+        _ = sut.$previousMatches
+            .dropFirst()
+            .sink { matches in
+                XCTAssertEqual(matches.count, 1)
+            }
+        
+        _ = sut.$upcomingMatches
+            .dropFirst()
+            .sink { matches in
+                XCTAssertEqual(matches.count, 1)
+            }
+    }
     
+    func testFilterTeamsWhenTeamsNotSelected() {
+        let matches = MatchListObject(
+            upcoming: [
+                MatchItem(match: getMockMatches().matches.upcoming[0],
+                          home: getMockTeams().teams[0],
+                          away: getMockTeams().teams[1]),
+                MatchItem(match: getMockMatches().matches.upcoming[1],
+                          home: getMockTeams().teams[1],
+                          away: getMockTeams().teams[2])
+            ],
+            previous: [
+                MatchItem(match: getMockMatches().matches.previous[0],
+                          home: getMockTeams().teams[0],
+                          away: getMockTeams().teams[1]),
+                MatchItem(match: getMockMatches().matches.previous[1],
+                          home: getMockTeams().teams[1],
+                          away: getMockTeams().teams[2])
+            ]
+        )
+        repository.matches = Result.success(matches).publisher.eraseToAnyPublisher()
+        sut.onFilterTeamsChanged(teams: [])
+        
+        _ = sut.$previousMatches
+            .dropFirst()
+            .sink { matches in
+                XCTAssertEqual(matches.count, 2)
+            }
+        
+        _ = sut.$upcomingMatches
+            .dropFirst()
+            .sink { matches in
+                XCTAssertEqual(matches.count, 2)
+            }
+    }
     
 }

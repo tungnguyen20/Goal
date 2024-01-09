@@ -35,6 +35,7 @@
 		A6F18A8B2B44761300CFE32C /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18A8A2B44761300CFE32C /* MatchesViewController.swift */; };
 		A6F18AA22B45751E00CFE32C /* MatchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18AA12B45751E00CFE32C /* MatchesViewModel.swift */; };
 		A6F18AA82B4580B100CFE32C /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F18AA72B4580B100CFE32C /* MatchCell.swift */; };
+		A6F59DFB2B4CD9FF005C36FE /* TeamsFilterViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F59DFA2B4CD9FF005C36FE /* TeamsFilterViewModelTests.swift */; };
 		A6FDA2902B4A7A62006292EC /* MatchItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA28F2B4A7A62006292EC /* MatchItemViewModel.swift */; };
 		A6FDA2982B4A7E75006292EC /* TeamMatchItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2972B4A7E75006292EC /* TeamMatchItemViewModel.swift */; };
 		A6FDA2A62B4A847E006292EC /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = A6FDA2A52B4A847E006292EC /* Networking */; };
@@ -55,6 +56,11 @@
 		A6FDA2D62B4A865A006292EC /* MatchesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2D52B4A865A006292EC /* MatchesViewModelTests.swift */; };
 		A6FDA2D82B4A866A006292EC /* MockMatchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2D72B4A866A006292EC /* MockMatchRepository.swift */; };
 		A6FDA2DA2B4A89EA006292EC /* TeamDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2D92B4A89EA006292EC /* TeamDetailViewModelTests.swift */; };
+		A6FDA2E42B4BF457006292EC /* TeamsFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2E32B4BF457006292EC /* TeamsFilterViewController.swift */; };
+		A6FDA2E92B4BF476006292EC /* TeamFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2E82B4BF476006292EC /* TeamFilterCell.swift */; };
+		A6FDA2EB2B4BF47E006292EC /* TeamsFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2EA2B4BF47E006292EC /* TeamsFilterViewModel.swift */; };
+		A6FDA2ED2B4BF489006292EC /* TeamsFilterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2EC2B4BF489006292EC /* TeamsFilterCoordinator.swift */; };
+		A6FDA2EF2B4BF6FD006292EC /* TeamFilterItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDA2EE2B4BF6FD006292EC /* TeamFilterItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +105,7 @@
 		A6F18A8A2B44761300CFE32C /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
 		A6F18AA12B45751E00CFE32C /* MatchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewModel.swift; sourceTree = "<group>"; };
 		A6F18AA72B4580B100CFE32C /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
+		A6F59DFA2B4CD9FF005C36FE /* TeamsFilterViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFilterViewModelTests.swift; sourceTree = "<group>"; };
 		A6FDA28F2B4A7A62006292EC /* MatchItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchItemViewModel.swift; sourceTree = "<group>"; };
 		A6FDA2972B4A7E75006292EC /* TeamMatchItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamMatchItemViewModel.swift; sourceTree = "<group>"; };
 		A6FDA2AA2B4A8527006292EC /* MatchDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchDatabase.swift; sourceTree = "<group>"; };
@@ -118,6 +125,11 @@
 		A6FDA2D52B4A865A006292EC /* MatchesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewModelTests.swift; sourceTree = "<group>"; };
 		A6FDA2D72B4A866A006292EC /* MockMatchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchRepository.swift; sourceTree = "<group>"; };
 		A6FDA2D92B4A89EA006292EC /* TeamDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDetailViewModelTests.swift; sourceTree = "<group>"; };
+		A6FDA2E32B4BF457006292EC /* TeamsFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFilterViewController.swift; sourceTree = "<group>"; };
+		A6FDA2E82B4BF476006292EC /* TeamFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamFilterCell.swift; sourceTree = "<group>"; };
+		A6FDA2EA2B4BF47E006292EC /* TeamsFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFilterViewModel.swift; sourceTree = "<group>"; };
+		A6FDA2EC2B4BF489006292EC /* TeamsFilterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsFilterCoordinator.swift; sourceTree = "<group>"; };
+		A6FDA2EE2B4BF6FD006292EC /* TeamFilterItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamFilterItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +265,7 @@
 		A6F18A832B4474B700CFE32C /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A6FDA2E22B4BF42F006292EC /* TeamsFilter */,
 				A6CFA29B2B472C0300B9E535 /* Matches */,
 				A6CFA2942B472A1700B9E535 /* TeamDetail */,
 			);
@@ -422,9 +435,46 @@
 			children = (
 				A6FDA2D52B4A865A006292EC /* MatchesViewModelTests.swift */,
 				A6FDA2D92B4A89EA006292EC /* TeamDetailViewModelTests.swift */,
+				A6F59DFA2B4CD9FF005C36FE /* TeamsFilterViewModelTests.swift */,
 				A6FDA2D72B4A866A006292EC /* MockMatchRepository.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A6FDA2E22B4BF42F006292EC /* TeamsFilter */ = {
+			isa = PBXGroup;
+			children = (
+				A6FDA2E72B4BF462006292EC /* Coordinator */,
+				A6FDA2E62B4BF45D006292EC /* ViewModel */,
+				A6FDA2E52B4BF45A006292EC /* View */,
+			);
+			path = TeamsFilter;
+			sourceTree = "<group>";
+		};
+		A6FDA2E52B4BF45A006292EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A6FDA2E32B4BF457006292EC /* TeamsFilterViewController.swift */,
+				A6FDA2E82B4BF476006292EC /* TeamFilterCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A6FDA2E62B4BF45D006292EC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A6FDA2EA2B4BF47E006292EC /* TeamsFilterViewModel.swift */,
+				A6FDA2EE2B4BF6FD006292EC /* TeamFilterItemViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A6FDA2E72B4BF462006292EC /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A6FDA2EC2B4BF489006292EC /* TeamsFilterCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -538,6 +588,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6FDA2D62B4A865A006292EC /* MatchesViewModelTests.swift in Sources */,
+				A6F59DFB2B4CD9FF005C36FE /* TeamsFilterViewModelTests.swift in Sources */,
 				A6FDA2DA2B4A89EA006292EC /* TeamDetailViewModelTests.swift in Sources */,
 				A6CFA2E22B48D8E100B9E535 /* MockTeamDatabase.swift in Sources */,
 				A6CFA2C32B485AD500B9E535 /* MatchRepositoryTests.swift in Sources */,
@@ -565,14 +616,19 @@
 				A6CFA2982B472A6800B9E535 /* TeamDetailViewController.swift in Sources */,
 				A6F18AA82B4580B100CFE32C /* MatchCell.swift in Sources */,
 				A6F18A762B44743500CFE32C /* Goal.xcdatamodeld in Sources */,
+				A6FDA2E92B4BF476006292EC /* TeamFilterCell.swift in Sources */,
+				A6FDA2E42B4BF457006292EC /* TeamsFilterViewController.swift in Sources */,
 				A6FDA2BB2B4A8527006292EC /* MatchDatabase.swift in Sources */,
 				A6FDA2982B4A7E75006292EC /* TeamMatchItemViewModel.swift in Sources */,
 				A6FDA2C02B4A8527006292EC /* MatchRepository.swift in Sources */,
+				A6FDA2EF2B4BF6FD006292EC /* TeamFilterItemViewModel.swift in Sources */,
+				A6FDA2ED2B4BF489006292EC /* TeamsFilterCoordinator.swift in Sources */,
 				A6FDA2BF2B4A8527006292EC /* PersistenceController.swift in Sources */,
 				A6FDA2C22B4A8527006292EC /* ApiEndpoint.swift in Sources */,
 				A6FDA2BC2B4A8527006292EC /* TeamDatabase.swift in Sources */,
 				A6CFA2932B4727EB00B9E535 /* MatchesCoordinator.swift in Sources */,
 				A6FDA2C12B4A8527006292EC /* ApiService.swift in Sources */,
+				A6FDA2EB2B4BF47E006292EC /* TeamsFilterViewModel.swift in Sources */,
 				A6FDA2C52B4A8527006292EC /* Match.swift in Sources */,
 				A6FDA2D02B4A853F006292EC /* UIColor+.swift in Sources */,
 				A6CFA2A22B473EF000B9E535 /* MatchesSectionHeader.swift in Sources */,

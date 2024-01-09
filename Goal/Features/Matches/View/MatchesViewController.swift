@@ -85,6 +85,23 @@ class MatchesViewController: UIViewController {
         return label
     }()
     
+    lazy var filterButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .white
+        button.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle"), for: .normal)
+        return button
+    }()
+    
+    lazy var badgeView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .primary
+        view.cornerRadius = 4
+        view.isUserInteractionEnabled = true
+        return view
+    }()
+    
     let matchCellReuseIdentifier = "MatchCell"
     
     private lazy var dataSource = createDataSource()
@@ -106,7 +123,7 @@ class MatchesViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         addSubviews()
         bindViewModel()
-        viewModel.getMatches()
+        viewModel.getAllMatches()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -136,13 +153,25 @@ class MatchesViewController: UIViewController {
         ])
         
         headerView.addSubviews([
-            logoLabel
+            logoLabel,
+            filterButton,
+            badgeView
         ])
         NSLayoutConstraint.activate([
             logoLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-            logoLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor)
+            logoLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            filterButton.heightAnchor.constraint(equalToConstant: 40),
+            filterButton.widthAnchor.constraint(equalToConstant: 40),
+            filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            filterButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
+            badgeView.heightAnchor.constraint(equalToConstant: 8),
+            badgeView.widthAnchor.constraint(equalToConstant: 8),
+            badgeView.centerXAnchor.constraint(equalTo: filterButton.centerXAnchor, constant: 4),
+            badgeView.centerYAnchor.constraint(equalTo: filterButton.centerYAnchor, constant: 4),
         ])
         
+        badgeView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openFilter)))
+        filterButton.addTarget(self, action: #selector(openFilter), for: .touchUpInside)
         collectionView.register(MatchCell.self, forCellWithReuseIdentifier: matchCellReuseIdentifier)
         collectionView.register(MatchesSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
     }
@@ -157,6 +186,17 @@ class MatchesViewController: UIViewController {
                 self?.dataSource.apply(snapshot, animatingDifferences: true)
             }
             .store(in: &subscriptions)
+        
+        viewModel.$filteringTeams
+            .map { $0.isEmpty }
+            .sink { [weak self] isEmpty in
+                self?.badgeView.isHidden = isEmpty
+            }
+            .store(in: &subscriptions)
+    }
+    
+    @objc func openFilter() {
+        viewModel.route.send(.filter(teams: viewModel.filteringTeams))
     }
     
 }

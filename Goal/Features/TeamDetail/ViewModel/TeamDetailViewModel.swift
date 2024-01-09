@@ -11,7 +11,7 @@ import Combine
 class TeamDetailViewModel {
     @Published var upcomingMatches: [MatchItemViewModel] = []
     @Published var previousMatches: [MatchItemViewModel] = []
-    var route = PassthroughSubject<MatchesCoordinator.Route, Never>()
+    var route = PassthroughSubject<TeamDetailCoordinator.Route, Never>()
     var didClose = PassthroughSubject<Void, Never>()
     var subscriptions = Set<AnyCancellable>()
     

@@ -19,6 +19,7 @@ class MatchesCoordinator: Coordinator<Void> {
     
     enum Route {
         case openTeam(team: Team)
+        case filter(teams: [Team])
     }
     
     override func start() -> AnyPublisher<Void, Never> {
@@ -40,6 +41,12 @@ class MatchesCoordinator: Coordinator<Void> {
                     self.openTeam(team: team, navigationController: navigation)
                         .sink(receiveValue: { _ in })
                         .store(in: &self.subscriptions)
+                case .filter(let teams):
+                    self.openFilter(selectingTeams: teams, navigationController: navigation)
+                        .sink(receiveValue: { teams in
+                            viewModel.onFilterTeamsChanged(teams: teams)
+                        })
+                        .store(in: &self.subscriptions)
                 }
             }
             .store(in: &subscriptions)
@@ -47,6 +54,11 @@ class MatchesCoordinator: Coordinator<Void> {
         window.rootViewController = navigation
         window.makeKeyAndVisible()
         return Empty(completeImmediately: false).eraseToAnyPublisher()
+    }
+    
+    func openFilter(selectingTeams: [Team], navigationController: UINavigationController) -> AnyPublisher<[Team], Never> {
+        let coordinator = TeamsFilterCoordinator(navigationController: navigationController, selectedTeams: selectingTeams)
+        return coordinate(to: coordinator)
     }
     
     func openTeam(team: Team, navigationController: UINavigationController) -> AnyPublisher<Void, Never> {

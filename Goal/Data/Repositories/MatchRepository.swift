@@ -9,8 +9,10 @@ import Foundation
 import Combine
 
 protocol MatchRepositoryProtocol {
+    func getAllTeams() -> AnyPublisher<[Team], Never>
     func getMatchList() -> AnyPublisher<MatchListObject, Never>
     func getTeamMatches(name: String) -> AnyPublisher<MatchListObject, Never>
+    func getMatches(teams: [String]) -> AnyPublisher<MatchListObject, Never>
 }
 
 class MatchRepository: MatchRepositoryProtocol {
@@ -36,16 +38,17 @@ class MatchRepository: MatchRepositoryProtocol {
             }.eraseToAnyPublisher()
     }
     
-    func getAllTeams() -> AnyPublisher<[Team], Error> {
+    func getAllTeams() -> AnyPublisher<[Team], Never> {
         service.getAllTeams()
             .map(\.teams)
             .map { [weak self] teams in
                 self?.teamDatabase.save(teams: teams)
                 return teams
             }
-            .catch { error -> AnyPublisher<[Team], Error> in
-                return self.teamDatabase.getAllTeams()
-            }.eraseToAnyPublisher()
+            .catch { error -> AnyPublisher<[Team], Never> in
+                return self.teamDatabase.getAllTeams().replaceError(with: []).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
     
     func getMatchList() -> AnyPublisher<MatchListObject, Never> {
@@ -109,6 +112,38 @@ class MatchRepository: MatchRepositoryProtocol {
         }
         .eraseToAnyPublisher()
     }
+    
+    func getMatches(teams: [String]) -> AnyPublisher<MatchListObject, Never> {
+        return Publishers.CombineLatest(
+            getAllTeams().replaceError(with: []),
+            getAllMatches().replaceError(with: [])
+        )
+        .map { allTeams, matches in
+            let upcoming = matches
+                .filter {
+                    guard let date = $0.date.toDate(format: .yyyyMMddHHmmssZ) else {
+                        return false
+                    }
+                    return date >= Date() && (teams.contains($0.home) || teams.contains($0.away))
+                }
+                .compactMap {
+                    self.getMatchItem(match: $0, teams: allTeams)
+                }
+            let previous = matches
+                .filter {
+                    guard let date = $0.date.toDate(format: .yyyyMMddHHmmssZ) else {
+                        return false
+                    }
+                    return date < Date() && (teams.contains($0.home) || teams.contains($0.away))
+                }
+                .compactMap {
+                    self.getMatchItem(match: $0, teams: allTeams)
+                }
+            return MatchListObject(upcoming: upcoming, previous: previous)
+        }
+        .eraseToAnyPublisher()
+    }
+    
     
     private func getMatchItem(match: Match, teams: [Team]) -> MatchItem? {
         guard let home = teams.first(where: { $0.name == match.home }),

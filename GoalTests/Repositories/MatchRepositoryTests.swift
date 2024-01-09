@@ -208,5 +208,89 @@ final class MatchRepositoryTests: XCTestCase {
         XCTAssertEqual(matchList?.upcoming.count, 1)
     }
     
+    func test_getMatchesOfTeams() {
+        var matchList: MatchListObject?
+        var error: Error?
+        
+        let expectation0 = self.expectation(description: "getMatchesOfTeams_when_service_failed")
+        service.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        matchDatabase.matches = Result.success([]).publisher.eraseToAnyPublisher()
+        teamDatabase.teams = Result.success([]).publisher.eraseToAnyPublisher()
+        
+        sut.getMatches(teams: ["B", "C"])
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let encounteredError):
+                    error = encounteredError
+                }
+                expectation0.fulfill()
+            }, receiveValue: { value in
+                matchList = value
+            })
+            .store(in: &cancellables)
+        
+        
+        wait(for: [expectation0], timeout: 1)
+        XCTAssertNil(error)
+        XCTAssertEqual(matchList?.previous.count, 0)
+        XCTAssertEqual(matchList?.upcoming.count, 0)
+        
+        let expectation1 = self.expectation(description: "getMatchesOfTeams_when_service_success")
+        
+        service.matches = Result.success(getMockMatches()).publisher.eraseToAnyPublisher()
+        service.teams = Result.success(getMockTeams()).publisher.eraseToAnyPublisher()
+        
+        sut.getMatches(teams: ["B", "C"])
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let encounteredError):
+                    error = encounteredError
+                }
+                expectation1.fulfill()
+            }, receiveValue: { value in
+                matchList = value
+            })
+            .store(in: &cancellables)
+        
+        
+        wait(for: [expectation1], timeout: 1)
+        
+        XCTAssertNil(error)
+        XCTAssertEqual(matchList?.previous.count, 1)
+        XCTAssertEqual(matchList?.upcoming.count, 2)
+        matchList = nil
+        error = nil
+        
+        service.matches = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        service.teams = Result.failure(ApiError.decodeFailed).publisher.eraseToAnyPublisher()
+        
+        let expectation2 = self.expectation(description: "getMatches_when_service_failed_and_database_has_data")
+        
+        sut.getMatches(teams: ["B", "C"])
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let encounteredError):
+                    error = encounteredError
+                }
+                expectation2.fulfill()
+            }, receiveValue: { value in
+                matchList = value
+            })
+            .store(in: &cancellables)
+        
+        
+        wait(for: [expectation2], timeout: 1)
+        XCTAssertNil(error)
+        XCTAssertEqual(matchList?.previous.count, 1)
+        XCTAssertEqual(matchList?.upcoming.count, 2)
+    }
+    
     
 }
